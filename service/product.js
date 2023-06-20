@@ -31,7 +31,7 @@ const remove = async (id) => {
 }
 
 const put = async (id, {body}, path) => {
-    const { name, description, category, stock, price, expired_date } = body
+    const { name, description, category, stock, price, expired_time } = body
     let product = await Product.findById(id)
     await cloudinary.uploader.destroy(product.cloudinary_id)
     const result = await cloudinary.uploader.upload(path)
@@ -41,7 +41,7 @@ const put = async (id, {body}, path) => {
         category: category || product.category, 
         stock: stock || product.stock,
         price: price || product.price,
-        expired_date: expired_date || product.price,
+        expired_time: expired_time || product.expired_time,
         product_img: result.secure_url || product.product_img,
         cloudinary_id: result.public_id || product.cloudinary_id
     }

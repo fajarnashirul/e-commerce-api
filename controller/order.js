@@ -57,12 +57,12 @@ const getAll = async (req, res, next) => {
 const getFilter = async (req, res, next) => {
     const query = {
         $or: [
-          { email: { $regex: req.query.name, $options: 'i' } },
-          { name: { $regex: req.query.name, $options: 'i' } },
+            { "owner.name": { $regex: req.query.name, $options: 'i' } },
+            { "owner.email": { $regex: req.query.email, $options: 'i' } }
         ],
       }
     try{
-        const data = await product.getSearch(query)
+        const data = await order.getSearch(query)
         if (!data || data.length === 0) {
             res.status(404).send({message: 'Data cannot be found'})
         } 
@@ -75,7 +75,7 @@ const getFilter = async (req, res, next) => {
 
 const remove = async (req, res, next) => {
     try{
-        await product.remove(req.params.id)
+        await order.remove(req.params.id)
         res.status(200).send({message: 'order removed'})  
     }catch (error){
         console.log(error)

@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const cors = require('cors')
 const userRoute = require('./routes/user')
 const adminRoute = require('./routes/admin')
 const productRoute = require('./routes/product')
@@ -34,6 +35,12 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use('/user', userRoute)
 app.use('/admin', adminRoute)

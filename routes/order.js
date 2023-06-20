@@ -6,6 +6,6 @@ router.get('/user', auth.userAuth, order.get)
 router.post('/checkout', auth.userAuth, order.checkout)
 router.get('/all', auth.adminAuth, order.getAll)
 router.get('/filter', auth.adminAuth, order.getFilter)
-router.delete('/', auth.adminAuth, order.remove)
+router.delete('/:id', auth.adminAuth, order.remove)
 
 module.exports = router
