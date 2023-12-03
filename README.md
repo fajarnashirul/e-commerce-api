@@ -15,7 +15,7 @@ Generate key for JWT authentication.
 ```bash
 node generateKey.js
 ```
-Setting .env with your Midtrans key and Cloudinary key.
+Setting .env with your MongoDB database link, Midtrans key, and Cloudinary key.
 
 ## Usage
 
